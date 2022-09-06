@@ -86,32 +86,63 @@ upVoteTrip.addEventListener('click', function(upVoted) {
 
 });
 
-downVoteTrip.addEventListener('click', function() {
+
+
+upVoteTrip.addEventListener('click', function(vote) {
     console.log('clicked')
     this.style = 'pointer-events:none'
-    btn1.style ='pointer-events:auto'
+    downVoteTrip.style ='pointer-events:auto'
+    if (downVoteTrip.classList.contains('red')) {
+        downVoteTrip.classList.remove('red');
+    } 
+
+  this.classList.toggle('green');
+  
+
+});
+
+downVoteTrip.addEventListener('click', function(vote) {
+    console.log('clicked')
+    this.style = 'pointer-events:none'
+    upVoteTrip.style ='pointer-events:auto'
     
-    if (btn1.classList.contains('green')) {
-      btn1.classList.remove('green');
+    if (upVoteTrip.classList.contains('green')) {
+        upVoteTrip.classList.remove('green');
     } 
   this.classList.toggle('red');
   
 });
 
-async function upVoted(){
-    const todoId = this.parentNode.dataset.id
-    try{
-        const response = await fetch('trip/upVoteTrip', {
-            method: 'put',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({
-                'todoIdFromJSFile': todoId
-            })
+
+async function vote(){ 
+    try {
+    let trip = await Trip.find({_id: req.body.btn})
+    let check=
+    trip.forEach((trip) => {
+    check = trip.vote.includes(req.user._id)})
+    console.log('help')
+        if(!check){
+        await Trip.findOneAndUpdate(
+            {userId: req.user._id},
+            {$push: {
+            vote: req.user._id, 
+            new: true,
+            runValidators: true, 
+            }
         })
-        const data = await response.json()
+            {
+            
+            await Trip.findOneAndUpdate(
+            {userId: req.user._id},
+            {$pull: {
+            
+            vote: req.user._id,
+            new: true,
+            runValidators: true,
+            }})
         console.log(data)
         location.reload()
-    }catch(err){
+    }}} catch (err) {
         console.log(err)
     }
 }

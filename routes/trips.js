@@ -21,13 +21,8 @@ router.post('/createPostTrip', ensureAuth, tripsController.createPostTrip)
 // @route   DELETE /trip/:id
 router.delete('/:id', ensureAuth, tripsController.deleteTrip)
 
-// @desc    Up Vote Trip
-// @route   PUT /trip/upVoteTrip
-router.put('/upVoteTrip', ensureAuth, tripsController.upVoteTrip)
-
-// @desc    Down Vote Trip
-// @route   PUT /trip/downVoteTrip
-router.put('/downVoteTrip', ensureAuth, tripsController.downVoteTrip)
-
+// @desc    Vote Trip
+// @route   PUT /trips/:id
+router.put('/trips', ensureAuth, tripsController.vote)
 
 module.exports = router

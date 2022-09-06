@@ -59,33 +59,20 @@ module.exports = {
       }
    },
 
-   upVoteTrip: async (req, res) => {
+   vote: async (req, res) => {
       try {
-         await Trip.upVoteTrip({
-            _id: req.params.id,
-            upVoteTrip: true,
-         })
-         console.log('Trip up voted')
-         res.redirect("/trips");
+         let trip = await Trip.find({
+            user: req.user.id})
+         let check=
+            trip.forEach((trip) => {
+            check = trip.vote.includes(req.user.id)})
+            
+         console.log('vote counter')
+         res.render("/trips"), {
+            name: req.user.firstName
+         };
       } catch (err) {
          console.error(err)
          res.render("error/500");
-      }
-   },
-
-   downVoteTrip: async (req, res) => {
-      try {
-         await Trip.downVoteTrip({
-            _id: req.params.id,
-            downVoteTrip: true,
-         })
-         console.log('Trip down voted')
-         res.redirect("/trips");
-      } catch (err) {
-         console.error(err)
-         res.render("error/500");
-      }
-   },
-
-
-}    
+      }}
+}

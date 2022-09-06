@@ -37,12 +37,9 @@ const TripSchema = new mongoose.Schema({
     required: true,    
   },
 
-  upVoteTrip: {
-    type: Boolean,
-  },
-
-  downVoteTrip: {
-    type: Boolean,
+  vote: {
+    type: String,
+    required: true,
   },
 
   tripMembers: {
