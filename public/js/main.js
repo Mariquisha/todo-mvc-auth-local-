@@ -73,20 +73,6 @@ async function markIncomplete(){
 let btn1 = document.querySelector('#green');
 let btn2 = document.querySelector('#red');
 
-upVoteTrip.addEventListener('click', function(upVoted) {
-    console.log('clicked')
-    this.style = 'pointer-events:none'
-    btn2.style ='pointer-events:auto'
-    if (btn2.classList.contains('red')) {
-      btn2.classList.remove('red');
-    } 
-
-  this.classList.toggle('green');
-  
-
-});
-
-
 
 upVoteTrip.addEventListener('click', function(vote) {
     console.log('clicked')
@@ -120,7 +106,6 @@ async function vote(){
     let check=
     trip.forEach((trip) => {
     check = trip.vote.includes(req.user._id)})
-    console.log('help')
         if(!check){
         await Trip.findOneAndUpdate(
             {userId: req.user._id},

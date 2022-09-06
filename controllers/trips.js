@@ -62,17 +62,33 @@ module.exports = {
    vote: async (req, res) => {
       try {
          let trip = await Trip.find({
-            user: req.user.id})
+            _id: req.params.id})
          let check=
             trip.forEach((trip) => {
-            check = trip.vote.includes(req.user.id)})
-            
-         console.log('vote counter')
-         res.render("/trips"), {
-            name: req.user.firstName
-         };
-      } catch (err) {
-         console.error(err)
-         res.render("error/500");
-      }}
+            check = trip.vote.includes(req.params.userId)})
+            if(!check){
+               await Trip.findOneAndUpdate(
+                   {userId: req.user._id},
+                   {$push: {
+                   vote: req.user._id, 
+                   new: true,
+                   runValidators: true, 
+                   }
+               })
+                   {
+                   
+                   await Trip.findOneAndUpdate(
+                   {userId: req.user._id},
+                   {$pull: {
+                   
+                   vote: req.user._id,
+                   new: true,
+                   runValidators: true,
+                   }})
+               console.log(data)
+               location.reload()
+           }}} catch (err) {
+               console.log(err)
+           }
+       }
 }

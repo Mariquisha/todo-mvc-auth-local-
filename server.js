@@ -69,21 +69,3 @@ if (process.env.NODE_ENV === 'development') {
 app.listen(process.env.PORT, () => {
    console.log(`Server is running in ${process.env.NODE_ENV} mode on port ${PORT}, you better catch it!`)
 })    
-
-app.put('/dashboard', async (req, resp) =>{
-   const data= await connectDB();
-   const user = {
-      email: 'hebs@gmail.com',
-      username: 'joe',
-      password: 'password'
-   }
-   if(upVoteTrip === true){
-      console.log('hey')
-   }
-   await new tripSchema.updateOne(
-      {
-         
-      }
-   )
-   resp.send({status:"updated"})
-})
