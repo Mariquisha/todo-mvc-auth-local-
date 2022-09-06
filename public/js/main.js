@@ -74,16 +74,23 @@ let btn1 = document.querySelector('#green');
 let btn2 = document.querySelector('#red');
 
 upVoteTrip.addEventListener('click', function(upVoted) {
-
+    console.log('clicked')
+    this.style = 'pointer-events:none'
+    btn2.style ='pointer-events:auto'
     if (btn2.classList.contains('red')) {
       btn2.classList.remove('red');
     } 
+
   this.classList.toggle('green');
   
 
 });
 
 downVoteTrip.addEventListener('click', function() {
+    console.log('clicked')
+    this.style = 'pointer-events:none'
+    btn1.style ='pointer-events:auto'
+    
     if (btn1.classList.contains('green')) {
       btn1.classList.remove('green');
     } 

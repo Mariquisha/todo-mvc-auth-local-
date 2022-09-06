@@ -55,6 +55,7 @@ const TripSchema = new mongoose.Schema({
     default: Date.now,
   },
 
-  })
+  },
+  {collection: 'trip'})
 
 module.exports = mongoose.model('Trip', TripSchema)
