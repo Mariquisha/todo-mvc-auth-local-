@@ -21,10 +21,26 @@
     <a href="/trips/createTrip">Create Trip</a>
     <br>
     <br>
+
+    <h1><a href="/trips/createTrip">Vote</a></h1>
+    <p>Vote on your trip here</p>
+
+    <div class="rating">
+        <!-- Thumbs up -->
+        <div class="like grow">
+          <button class="btn" id="green"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></button>
+        </div>
+
+        <!-- Thumbs down -->
+        <div class="dislike grow">
+          <button class="btn" id="red"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
     <span>Logged in as <%=user%> | </span>
     <a href="/logout">Logout</a>
 
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
 
     <!-- Compiled and minified JavaScript -->
     <!-- Materialize -->

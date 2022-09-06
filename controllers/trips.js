@@ -57,6 +57,35 @@ module.exports = {
          console.error(err)
          res.render("error/500");
       }
-   }
+   },
+
+   upVoteTrip: async (req, res) => {
+      try {
+         await Trip.upVoteTrip({
+            _id: req.params.id,
+            upVoteTrip: true,
+         })
+         console.log('Trip up voted')
+         res.redirect("/trips");
+      } catch (err) {
+         console.error(err)
+         res.render("error/500");
+      }
+   },
+
+   downVoteTrip: async (req, res) => {
+      try {
+         await Trip.downVoteTrip({
+            _id: req.params.id,
+            downVoteTrip: true,
+         })
+         console.log('Trip down voted')
+         res.redirect("/trips");
+      } catch (err) {
+         console.error(err)
+         res.render("error/500");
+      }
+   },
+
 
 }    
